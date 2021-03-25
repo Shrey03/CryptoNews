@@ -41,8 +41,17 @@ request(bitcoinUrl, (error, response, html) => {
                     const $ = cheerio.load(html);
 
                     $('article').each((i, el) => {
+                        var temp2 = { "title": "", "para": [], "image": "" }
                         var title = $(el).find('h1').text();
-                        console.log(title);
+                        // console.log(title);
+                        temp2.title = title;
+
+                        var para = $(el).find('p').text();
+                        temp2.para = para;
+                        // console.log(temp2);
+                        var imgLink = $(el).find('figure').find('img').attr('src');
+                        temp2.image = imgLink;
+                        console.log(temp2);
                     });
                 }
             });
